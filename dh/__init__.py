@@ -2,7 +2,7 @@ from Crypto.Hash import SHA256
 from Crypto.Random import random
 
 from lib.helpers import read_hex
-
+#This is wrong russell
 # Project TODO: Is this the best choice of prime? Why? Why not? Feel free to replace!
 
 # The prime was changed from 1536-bit to 8192-bit
