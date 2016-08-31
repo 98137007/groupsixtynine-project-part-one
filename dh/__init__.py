@@ -2,7 +2,7 @@ from Crypto.Hash import SHA256
 from Crypto.Random import random
 
 from lib.helpers import read_hex
-#This is wrong russell
+
 # Project TODO: Is this the best choice of prime? Why? Why not? Feel free to replace!
 
 # The prime was changed from 1536-bit to 8192-bit
@@ -64,7 +64,7 @@ def create_dh_key():
     # Creates a Diffie-Hellman key
     # Returns (public, private)
     a = random.randint(prime, int(2**8))
-    return (a)
+    return a
 
 def calculate_dh_secret(their_public, my_private):
     # Calculate the shared secret
