@@ -58,20 +58,29 @@ prime = read_hex(raw_prime)
 # Project TODO: write the appropriate code to perform DH key exchange
 
 
+#public key
+# the base number is 2 ( however it can be changed)
+# the reason why random (Object) was used, is because it always changes.
+
+public = pow(2,random.randint) % prime
+
+#private
+
+private = pow(2,random.randint) % prime
+
+
 #def = means define 
 
 def create_dh_key():
     # Creates a Diffie-Hellman key
     # Returns (public, private)
-    a = random.randint(prime, int(2**8))
-    return a
+    return public, private
+
+
 
 def calculate_dh_secret(their_public, my_private):
     # Calculate the shared secret
     shared_secret = their_public * my_private
-
-
-    
 
     # Hash the value so that:
     # (a) There's no bias in the bits of the output
@@ -79,5 +88,7 @@ def calculate_dh_secret(their_public, my_private):
     # (b) We can convert to raw bytes easily
     # (c) We could add additional information if we wanted
     # Feel free to change SHA256 to a different value if more appropriate
-    shared_hash = SHA256.new(bytes(shared_secret, "ascii")).hexdigest()
+
+    shared_hash = SHA256.new(bytes(str(shared_secret), "ascii")).hexdigest()
+
     return shared_hash
