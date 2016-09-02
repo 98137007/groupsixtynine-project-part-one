@@ -60,7 +60,7 @@ def create_dh_key():
 
 def calculate_dh_secret(their_public, my_private):
     # Calculate the shared secret
-    shared_secret = their_public * my_private
+    shared_secret = pow(their_public, my_private(, prime))
 
     # Hash the value so that:
     # (a) There's no bias in the bits of the output
