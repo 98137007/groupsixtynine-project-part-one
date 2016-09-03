@@ -41,26 +41,26 @@ prime = read_hex(raw_prime)
 
 #private
 
-private = random.randint(2**3072,2**8192)
+
 
 #public key
 # the base number is 2 ( however it can be changed)
 # the reason why random (Object) was used, is because it always changes.
 
-public = pow(2,private) % prime
+
 
 #def = means define 
 
 def create_dh_key():
     # Creates a Diffie-Hellman key
     # Returns (public, private)
-    return public, private
-
+    private = random.randint(2**3072,2**8192)
+    public = pow(2,private,prime)
 
 
 def calculate_dh_secret(their_public, my_private):
     # Calculate the shared secret
-    shared_secret = pow(their_public, my_private(, prime))
+    shared_secret = pow(their_public, my_private, prime)
 
     # Hash the value so that:
     # (a) There's no bias in the bits of the output
