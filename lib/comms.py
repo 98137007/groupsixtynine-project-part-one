@@ -1,6 +1,7 @@
 import struct
 
 from Crypto.Cipher import XOR
+#change is aes
 
 from dh import create_dh_key, calculate_dh_secret
 
@@ -30,10 +31,11 @@ class StealthConn(object):
 
         # Default XOR algorithm can only take a key of length 32
         self.cipher = XOR.new(shared_hash[:4])
-
+# ^ change to aes
+#provide a higher number for encryption
     def send(self, data):
         if self.cipher:
-            encrypted_data = self.cipher.encrypt(data)
+            encrypted_data = self.cipher.encrypt(data) #This one change too #2
             if self.verbose:
                 print("Original data: {}".format(data))
                 print("Encrypted data: {}".format(repr(encrypted_data)))
@@ -52,6 +54,7 @@ class StealthConn(object):
         unpacked_contents = struct.unpack('H', pkt_len_packed)
         pkt_len = unpacked_contents[0]
 
+#change this shit from XOR to AES russell gthank
         encrypted_data = self.conn.recv(pkt_len)
         if self.cipher:
             data = self.cipher.decrypt(encrypted_data)
